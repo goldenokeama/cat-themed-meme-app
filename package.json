@@ -1,0 +1,14 @@
+{
+  "name": "cat-themed-meme-app",
+  "description": "an app that gives you a cat themed meme to match your mood",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}
