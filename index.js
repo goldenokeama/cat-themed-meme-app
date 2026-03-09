@@ -20,6 +20,9 @@ memeModalCloseBtn.addEventListener("click", closeModal);
 getImageBtn.addEventListener("click", renderCat);
 
 function highlightCheckedOption(e) {
+  // removing the disabled style from the button
+  getImageBtn.disabled = false;
+
   const radios = document.getElementsByClassName("radio");
   for (let radio of radios) {
     radio.classList.remove("highlight");
