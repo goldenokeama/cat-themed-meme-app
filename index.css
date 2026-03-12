@@ -31,6 +31,11 @@ h3 {
 }
 
 /* layout */
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
 
 header {
   background-color: #67595e;
@@ -39,6 +44,7 @@ header {
 .header-inner {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
   width: 370px;
   gap: 15px;
@@ -52,7 +58,8 @@ header {
 .controls-container {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 50%;
+  min-width: 200px;
   margin: 0px auto;
 }
 
@@ -69,7 +76,8 @@ header {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #bcbcbc;
-  padding: 4px 8px;
+  /* padding: 4px 8px; */
+  padding: 6px 12px;
 }
 
 .radio:first-child {
@@ -141,8 +149,10 @@ input[type="radio"] {
   justify-content: center;
   border: 1px solid #67595e;
   border-radius: 5px;
-  width: 420px;
-  height: 490px;
+  width: 52%;
+  max-width: 420px;
+  min-width: 345px;
+  height: 510px;
   background-color: #fff0ee;
 }
 
