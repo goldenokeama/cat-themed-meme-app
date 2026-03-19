@@ -17,7 +17,7 @@ emotionRadios.addEventListener("change", highlightCheckedOption);
 
 memeModalCloseBtn.addEventListener("click", closeModal);
 
-getImageBtn.addEventListener("click", renderCat);
+getImageBtn.addEventListener("click", openGalleryModal);
 
 function highlightCheckedOption(e) {
   // removing the disabled style from the button
@@ -34,31 +34,57 @@ function closeModal() {
   memeModal.style.display = "none";
 }
 
-function renderCat(e) {
-  // stopping the click event from bubbling up to the window and closing the modal
+function openGalleryModal(e) {
+  // stopping the click event from bubbling up to the document and closing the modal
   e.stopPropagation();
 
-  const catObject = getSingleCatObject();
+  const mainImg = document.getElementById("current-image");
+  const thumbContainer = document.getElementById("thumbnail-container");
 
-  memeModalInner.innerHTML = `
-        <img 
-        class="cat-img" 
-        src="./images/${catObject.image}"
-        alt="${catObject.alt}"
-        >
-        `;
-  memeModal.style.display = "flex";
-}
-
-function getSingleCatObject() {
   const catsArray = getMatchingCatsArray();
 
-  if (catsArray.length === 1) {
-    return catsArray[0];
-  } else {
-    const randomNumber = Math.floor(Math.random() * catsArray.length);
-    return catsArray[randomNumber];
+  // Set the initial large image
+  const catObject = catsArray[0];
+
+  mainImg.src = `./images/${catObject.image}`;
+  mainImg.alt = `${catObject.alt}`;
+
+  // Clear previous thumbnails
+  thumbContainer.innerHTML = "";
+
+  // Conditional Rendering: Only build thumbnails if there's more than one
+  if (catsArray.length > 1) {
+    catsArray.forEach((catObject, index) => {
+      const thumbnail = document.createElement("img");
+      thumbnail.src = `./images/${catObject.image}`;
+      thumbnail.alt = `${catObject.alt}`;
+
+      // adding the active class to the first thumbnail
+      if (index === 0) thumbnail.classList.add("active");
+
+      // Interaction: Change main image on click
+      thumbnail.addEventListener("click", () => {
+        // Find the current active thumb and strip its active class
+        const currentActiveThumbnail = document.querySelector(
+          ".thumbnail-grid img.active"
+        );
+        if (currentActiveThumbnail) {
+          currentActiveThumbnail.classList.remove("active");
+        }
+
+        // Add the active class to the thumbnail we just clicked
+        thumbnail.classList.add("active");
+
+        mainImg.src = `./images/${catObject.image}`;
+        mainImg.alt = `${catObject.alt}`;
+      });
+
+      thumbContainer.appendChild(thumbnail);
+    });
   }
+
+  // display the meme modal
+  memeModal.style.display = "block";
 }
 
 function getMatchingCatsArray() {
