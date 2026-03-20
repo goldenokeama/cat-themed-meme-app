@@ -220,13 +220,14 @@ input[type="radio"] {
   transition: all 0.3s ease;
 }
 
+.thumbnail-grid img:hover,
+.thumbnail-grid img:focus {
+  transform: scale(1.05);
+  outline: 3px solid #ff9800;
+}
+
 .thumbnail-grid img.active {
   opacity: 1;
   border: 2px solid #007bff;
   transform: scale(1.1);
-}
-
-.thumbnail-grid img:hover {
-  transform: scale(1.05);
-  border: 2px solid #f68915;
 }

@@ -3,9 +3,10 @@ import { catsData } from "/data.js";
 const emotionRadios = document.getElementById("emotion-radios");
 const getImageBtn = document.getElementById("get-image-btn");
 const gifsOnlyOption = document.getElementById("gifs-only-option");
-const memeModalInner = document.getElementById("meme-modal-inner");
 const memeModal = document.getElementById("meme-modal");
 const memeModalCloseBtn = document.getElementById("meme-modal-close-btn");
+
+const mainImg = document.getElementById("current-image");
 
 document.addEventListener("click", function (event) {
   if (!memeModal.contains(event.target)) {
@@ -34,11 +35,26 @@ function closeModal() {
   memeModal.style.display = "none";
 }
 
+function updateActiveImage(catObject, clickedThumbnail) {
+  // Find the current active thumb and strip its active class
+  const currentActiveThumbnail = document.querySelector(
+    ".thumbnail-grid img.active"
+  );
+  if (currentActiveThumbnail) {
+    currentActiveThumbnail.classList.remove("active");
+  }
+
+  // Add the active class to the thumbnail we just clicked
+  clickedThumbnail.classList.add("active");
+
+  mainImg.src = `./images/${catObject.image}`;
+  mainImg.alt = `${catObject.alt}`;
+}
+
 function openGalleryModal(e) {
   // stopping the click event from bubbling up to the document and closing the modal
   e.stopPropagation();
 
-  const mainImg = document.getElementById("current-image");
   const thumbContainer = document.getElementById("thumbnail-container");
 
   const catsArray = getMatchingCatsArray();
@@ -59,24 +75,22 @@ function openGalleryModal(e) {
       thumbnail.src = `./images/${catObject.image}`;
       thumbnail.alt = `${catObject.alt}`;
 
+      // make the thumbnail focusable via the Tab key
+      thumbnail.tabIndex = 0;
+
       // adding the active class to the first thumbnail
       if (index === 0) thumbnail.classList.add("active");
 
-      // Interaction: Change main image on click
+      // Interaction: Change active image on click
       thumbnail.addEventListener("click", () => {
-        // Find the current active thumb and strip its active class
-        const currentActiveThumbnail = document.querySelector(
-          ".thumbnail-grid img.active"
-        );
-        if (currentActiveThumbnail) {
-          currentActiveThumbnail.classList.remove("active");
+        updateActiveImage(catObject, thumbnail);
+      });
+
+      thumbnail.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          updateActiveImage(catObject, thumbnail);
         }
-
-        // Add the active class to the thumbnail we just clicked
-        thumbnail.classList.add("active");
-
-        mainImg.src = `./images/${catObject.image}`;
-        mainImg.alt = `${catObject.alt}`;
       });
 
       thumbContainer.appendChild(thumbnail);
