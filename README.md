@@ -1,4 +1,4 @@
-# 🐱 Cat-Themed Meme App (Pumpkin’s Meme Picker)
+# 🐱 Cat-Themed Meme App (Pumpkin's Meme Picker)
 
 A fun and interactive meme picker app that lets users select their current emotion and view matching cat memes 🐾
 

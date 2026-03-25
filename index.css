@@ -180,6 +180,28 @@ input[type="radio"] {
   height: 100%;
 }
 
+.nav-btn {
+  position: absolute;
+  top: 35%;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.nav-right {
+  right: 0;
+}
+
 .main-display {
   width: 95%;
   max-width: 340px;

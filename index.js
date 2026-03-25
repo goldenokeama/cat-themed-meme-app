@@ -6,11 +6,28 @@ const gifsOnlyOption = document.getElementById("gifs-only-option");
 const memeModal = document.getElementById("meme-modal");
 const memeModalCloseBtn = document.getElementById("meme-modal-close-btn");
 
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
 const mainImg = document.getElementById("current-image");
 
 document.addEventListener("click", function (event) {
   if (!memeModal.contains(event.target)) {
     closeModal();
+  }
+});
+
+// Keyboard navigation of the gallery thumbnails
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft") {
+    if (memeModal.style.display === "block") {
+      navigateTo(currentIndex - 1);
+    }
+  }
+  if (event.key === "ArrowRight") {
+    if (memeModal.style.display === "block") {
+      navigateTo(currentIndex + 1);
+    }
   }
 });
 
@@ -28,6 +45,7 @@ function highlightCheckedOption(e) {
   for (let radio of radios) {
     radio.classList.remove("highlight");
   }
+
   document.getElementById(e.target.id).parentElement.classList.add("highlight");
 }
 
@@ -40,6 +58,7 @@ function updateActiveImage(catObject, clickedThumbnail) {
   const currentActiveThumbnail = document.querySelector(
     ".thumbnail-grid img.active"
   );
+
   if (currentActiveThumbnail) {
     currentActiveThumbnail.classList.remove("active");
   }
@@ -49,6 +68,38 @@ function updateActiveImage(catObject, clickedThumbnail) {
 
   mainImg.src = `./images/${catObject.image}`;
   mainImg.alt = `${catObject.alt}`;
+
+  console.log("mainImg", mainImg);
+}
+
+let currentIndex = 0;
+prevBtn.addEventListener("click", () => navigateTo(currentIndex - 1));
+nextBtn.addEventListener("click", () => navigateTo(currentIndex + 1));
+
+function navigateTo(newIndex) {
+  console.log("currentIndex: ", currentIndex);
+  const catsArray = getMatchingCatsArray();
+
+  // Circular logic: if we go past the end, go to 0. If before 0, go to end.
+  if (newIndex >= catsArray.length) {
+    currentIndex = 0;
+  } else if (newIndex < 0) {
+    currentIndex = catsArray.length - 1;
+  } else {
+    currentIndex = newIndex;
+  }
+
+  // Set the initial large image
+  const catObject = catsArray[currentIndex];
+
+  const allThumbs = document.querySelectorAll(".thumbnail-grid img");
+  console.log("all thumbs", allThumbs);
+
+  const targetThumb = allThumbs[currentIndex];
+  console.log("targetThumb", targetThumb);
+  console.log("catObject", catObject);
+
+  updateActiveImage(catObject, targetThumb);
 }
 
 function openGalleryModal(e) {
@@ -56,7 +107,6 @@ function openGalleryModal(e) {
   e.stopPropagation();
 
   const thumbContainer = document.getElementById("thumbnail-container");
-
   const catsArray = getMatchingCatsArray();
 
   // Set the initial large image
