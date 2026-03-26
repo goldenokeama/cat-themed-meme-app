@@ -6,6 +6,12 @@ This project demonstrates dynamic UI rendering, filtering data, modal interactio
 
 ---
 
+## 📸 Screenshot
+
+<img src="project-screenshot1.png" alt="cat-themed meme app screenshot" width="400" />
+<img src="project-screenshot2.png" alt="cat-themed meme app screenshot" width="400" />
+---
+
 ## 📌 Project Overview
 
 This app allows users to:
