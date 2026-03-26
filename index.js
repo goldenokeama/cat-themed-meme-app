@@ -42,6 +42,7 @@ function highlightCheckedOption(e) {
   getImageBtn.disabled = false;
 
   const radios = document.getElementsByClassName("radio");
+
   for (let radio of radios) {
     radio.classList.remove("highlight");
   }
@@ -68,16 +69,14 @@ function updateActiveImage(catObject, clickedThumbnail) {
 
   mainImg.src = `./images/${catObject.image}`;
   mainImg.alt = `${catObject.alt}`;
-
-  console.log("mainImg", mainImg);
 }
 
 let currentIndex = 0;
+
 prevBtn.addEventListener("click", () => navigateTo(currentIndex - 1));
 nextBtn.addEventListener("click", () => navigateTo(currentIndex + 1));
 
 function navigateTo(newIndex) {
-  console.log("currentIndex: ", currentIndex);
   const catsArray = getMatchingCatsArray();
 
   // Circular logic: if we go past the end, go to 0. If before 0, go to end.
@@ -93,11 +92,8 @@ function navigateTo(newIndex) {
   const catObject = catsArray[currentIndex];
 
   const allThumbs = document.querySelectorAll(".thumbnail-grid img");
-  console.log("all thumbs", allThumbs);
 
   const targetThumb = allThumbs[currentIndex];
-  console.log("targetThumb", targetThumb);
-  console.log("catObject", catObject);
 
   updateActiveImage(catObject, targetThumb);
 }

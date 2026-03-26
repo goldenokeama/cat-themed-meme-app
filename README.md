@@ -66,14 +66,14 @@ The experience is designed to be simple, playful, and interactive.
 
 ### 🔄 Thumbnail-Based Navigation
 
-- Clicking a thumbnail updates the main image
+- Clicking a thumbnail or either of the arrow buttons updates the main image
 - Active thumbnail is visually highlighted
 - Only renders thumbnails when multiple matches exist
 
 ### ⌨️ Keyboard Accessibility
 
 - Thumbnails are focusable via the Tab key
-- Users can switch images using Enter or Space
+- Users can switch images using Enter or Space or ArrowLeft and ArrowRight
 - Improves usability and accessibility
 
 ### 🎯 UI State Management
