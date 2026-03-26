@@ -6,10 +6,18 @@ This project demonstrates dynamic UI rendering, filtering data, modal interactio
 
 ---
 
-## 📸 Screenshot
+## 🚀 Live Demo
+
+[View the deployed site here](https://cat-themed-meme-app.netlify.app/)
+
+---
+
+## 📸 Project Screenshots
 
 <img src="project-screenshot1.png" alt="cat-themed meme app screenshot" width="400" />
+
 <img src="project-screenshot2.png" alt="cat-themed meme app screenshot" width="400" />
+
 ---
 
 ## 📌 Project Overview
