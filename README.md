@@ -139,7 +139,7 @@ git clone https://github.com/goldenokeama/cat-themed-meme-app.git
 2. Navigate into the project folder:
 
 ```bash
-cd cat-meme-app
+cd cat-themed-meme-app
 ```
 
 3. Open `index.html` in your browser.
